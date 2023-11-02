@@ -42,6 +42,8 @@ const client = new MongoClient(uri, {
 
 const database = client.db("menuDB");
 const menuFoodCollection = database.collection("products");
+const menuCategoryCollection = database.collection("categories");
+
 const cartProductsCollection = database.collection("cart_products");
 
 async function run() {
@@ -51,6 +53,11 @@ async function run() {
   
       app.get('/foods', async (req, res) =>{
           const cursor = menuFoodCollection.find();
+          const result = await cursor.toArray();
+          res.send(result);
+        })
+      app.get('/categories', async (req, res) =>{
+          const cursor = menuCategoryCollection.find();
           const result = await cursor.toArray();
           res.send(result);
         })
@@ -67,6 +74,12 @@ async function run() {
           const product = await menuFoodCollection.findOne(query);
           res.send(product);
         })
+      app.get('/categories/:id', async (req, res) =>{
+          const id = req.params.id;
+          const query = {_id: new ObjectId(id)};
+          const product = await menuCategoryCollection.findOne(query);
+          res.send(product);
+        })
   
       //create data or insert a data to database
       app.post("/foods", async (req, res) => {
@@ -77,6 +90,13 @@ async function run() {
           console.log(result);
           
       });
+      app.post("/categories", async (req, res) => {
+          console.log(req.body);
+          const newCategory = req.body;
+          const result = await menuCategoryCollection.insertOne(newCategory);
+          res.send(result);
+          console.log(result);    
+      });
       app.post("/cart_products", async (req, res) => {
           console.log(req.body);
           const newCartProduct = req.body;
@@ -85,13 +105,24 @@ async function run() {
         });
   
       //delete data
-      app.delete('/cart_products/:cid', async(req, res) => {
+      app.delete('/foods/:cid', async(req, res) => {
           const id  = req.params.cid;
           console.log(`PLEASE DELETE ID FROM DATABASE: ${id}`);
           const query = { _id: new ObjectId(id)};
           console.log(query);
           
-          const result = await cartProductsCollection.deleteOne(query);
+          const result = await menuFoodCollection.deleteOne(query);
+          res.send(result);
+        })
+
+
+      app.delete('/categories/:cid', async(req, res) => {
+          const id  = req.params.cid;
+          console.log(`PLEASE DELETE ID FROM DATABASE: ${id}`);
+          const query = { _id: new ObjectId(id)};
+          console.log(query);
+          
+          const result = await menuCategoryCollection.deleteOne(query);
           res.send(result);
         })
       //update data
@@ -110,6 +141,23 @@ async function run() {
             }
           }
           const result = await menuFoodCollection.updateOne(query, updateProduct, options);
+          res.send(result);
+        })
+
+      app.put('/categories/:id', async (req, res) => {
+          const id = req.params.id;
+          const toBeUpdatedProduct = req.body;
+          console.log(toBeUpdatedProduct);
+          const query = { _id: new ObjectId(id)};
+          const options = { upsert: true };
+          const updateProduct = {
+            $set: {
+              name:toBeUpdatedProduct.fName,
+              image:toBeUpdatedProduct.fImage,
+              sName:toBeUpdatedProduct.fSName  
+            }
+          }
+          const result = await menuCategoryCollection.updateOne(query, updateProduct, options);
           res.send(result);
         })
   
