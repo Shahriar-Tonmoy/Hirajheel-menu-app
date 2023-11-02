@@ -1,0 +1,34 @@
+[
+    {
+      "id": 1,
+      "sName":"Breakfast",
+      "name": "Breakfast Menu",
+      "image": "https://i.ibb.co/VxFkMbV/1-vaji-2.jpg"
+    },
+    {
+      "id": 2,
+      "sName":"Lunch",
+      "name": "Lunch Menu",
+      "image": "https://i.ibb.co/WFbf85G/MG-3656.jpg"
+    },
+    {
+      "id": 3,
+      "sName":"Breads",
+      "name": "Breads",
+      "image": "https://i.ibb.co/0D4khVB/2-naan.jpg"
+    },
+    {
+      "id": 5,
+      "sName":"Kebab",
+      "name": "Kebab",
+      "image": "https://i.ibb.co/4R6Ps3Y/MG-3479.jpg"
+    },
+    {
+      "id": 6,
+      "sName":"setMenu",
+      "name": "Set Menu",
+      "image": "https://i.ibb.co/mBKz3wY/MG-3694.jpg"
+    }
+  ]
+
+
