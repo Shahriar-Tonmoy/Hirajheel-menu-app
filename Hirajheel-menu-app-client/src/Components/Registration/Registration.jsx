@@ -50,7 +50,7 @@ const Registration = () => {
         <div className="text-center lg:text-left">
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20 px-5">
-        <h1 className="text-orange-400 text-3xl font-bold text-center">Registration</h1>
+        <h1 className="text-[#FCE3AE] text-3xl font-bold text-center">Registration</h1>
           <form onSubmit={handleSignUp} className="card-body">
           <div className="form-control">
               <label className="label">
@@ -100,10 +100,10 @@ const Registration = () => {
               />
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-opacity-0 border-orange-400 hover:bg-opacity-0 hover:border-orange-200">Sign up</button>
+              <button className="btn bg-opacity-0 border-[#FCE3AE] hover:bg-opacity-0 hover:border-orange-200">Sign up</button>
             </div>
           </form>
-          <p className="text-center">Already have an account? <Link className="text-orange-400 underline" to="/SignIn">Sign In</Link> here</p>
+          <p className="text-center">Already have an account? <Link className="text-[#FCE3AE] underline" to="/SignIn">Sign In</Link> here</p>
         </div>
       </div>
     </div>

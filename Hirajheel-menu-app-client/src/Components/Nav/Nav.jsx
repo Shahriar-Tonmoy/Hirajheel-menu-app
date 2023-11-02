@@ -11,10 +11,17 @@ const Nav = ({ handleToggle }) => {
         <NavLink className="text-lg font-semibold" to="/">
           Home
         </NavLink>
-
-        <NavLink className="text-lg font-semibold" to="/add_product">
-          Add Product
+        {
+          user && <NavLink className="text-lg font-semibold" to="/add_product">
+          Add Food
         </NavLink>
+        }
+        {
+          user && <NavLink className="text-lg font-semibold" to="/add_category">
+          Add Category
+        </NavLink>
+        }
+        
         {!user && (
           <NavLink className="text-lg font-semibold" to="/SignIn">
             Sign in

@@ -15,8 +15,15 @@ import MyCart from "./Components/MyCart/MyCart.jsx";
 import Products from "./Components/Products/Products.jsx";
 import Details from "./Components/Details/Details.jsx";
 import Update from "./Components/Update/Update.jsx";
+import AddCategory from "./Components/AddCategory/AddCategory.jsx";
+import CategoryUpdate from "./Components/CategoryUpdate/CategoryUpdate.jsx";
+import Welcome from "./Components/Welcome/Welcome.jsx";
 
 const router = createBrowserRouter([
+  {
+    path:"welcome",
+    element:<Welcome></Welcome>
+  },
   {
     path: "/",
     element:<Root></Root>,
@@ -26,10 +33,11 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home></Home>,
       },
-      {
-        path: "registration",
-        element: <Registration></Registration>,
-      },
+      
+      // {
+      //   path: "registration",
+      //   element: <PrivateRoute><Registration></Registration></PrivateRoute>,
+      // },
       {
         path: "SignIn",
         element: <SignIn></SignIn>,
@@ -44,6 +52,11 @@ const router = createBrowserRouter([
         element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
       },
       {
+        path:"add_category",
+        element:<PrivateRoute><AddCategory></AddCategory></PrivateRoute>
+      },
+      
+      {
         path:"/details/:id",
         element:<PrivateRoute><Details></Details></PrivateRoute>,
         loader: ()=>fetch('https://brand-website-server-9lu7pgb34-mirza-shahriar-tonmoys-projects.vercel.app/products')
@@ -57,6 +70,11 @@ const router = createBrowserRouter([
         path:"/update/:id",
         element:<PrivateRoute><Update></Update></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:3000/foods/${params.id}`)
+      },
+      {
+        path:"/category_update/:id",
+        element:<PrivateRoute><CategoryUpdate></CategoryUpdate></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:3000/categories/${params.id}`)
       }
     ]
   },

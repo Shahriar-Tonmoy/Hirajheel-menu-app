@@ -1,7 +1,15 @@
+import { useEffect, useState } from "react";
 
 
 const AddProduct = () => {
 
+  const [brands, setBrands] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/categories")
+      .then((res) => res.json())
+      .then((data) => setBrands(data));
+  }, []);
   const handleNewProduct = (e) => {
     e.preventDefault();
 
@@ -97,11 +105,14 @@ const AddProduct = () => {
                   className="input input-bordered text-[#FCE3AE]"
                   name="foodType"
                   required>
-                  <option value="Breakfast">Breakfast</option>
+                  {
+                    brands.map(cat => <option key={cat._id} value={cat.sName}>{cat.name}</option>)
+                  }
+                  {/* <option value="Breakfast">Breakfast</option>
                   <option value="Lunch">Lunch</option>
                   <option value="Breads">Breads</option>
                   <option value="Kebab">Kebab</option>
-                  <option value="setMenu">Set Menu</option>
+                  <option value="setMenu">Set Menu</option> */}
                 </select>
               </div>
               {/* <div className="form-control">
